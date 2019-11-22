@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
+import com.sfmap.api.maps.model.LatLng;
 import com.sfmap.map.demo.R;
 import com.sfmap.map.demo.util.Constants;
 import com.sfmap.map.demo.util.ToastUtil;
@@ -35,6 +36,11 @@ public class CameraActivity extends Activity implements OnClickListener,
 		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);// 此方法必须重写
 		init();
+		lMap.moveCamera(
+				CameraUpdateFactory.newLatLngZoom(
+						new LatLng(28.6880478, 115.852852), //28.6880478, 115.852852
+						18)
+		);
 	}
 
 	/**

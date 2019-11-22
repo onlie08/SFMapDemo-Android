@@ -48,6 +48,11 @@ public class SfLocationModeSourceActivity extends Activity implements
 		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);// 此方法必须重写
 		init();
+		map.moveCamera(
+				CameraUpdateFactory.newLatLngZoom(
+						new LatLng(28.6880478, 115.852852), //28.6880478, 115.852852
+						18)
+		);
 	}
 	public void click(View v){
 		angle+=10;

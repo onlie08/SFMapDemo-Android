@@ -37,13 +37,6 @@ public class BasicMapActivity extends Activity implements MapController.OnMapLoa
 		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);// 此方法必须调用
 		init();
-		addMarker();
-	}
-
-	private void addMarker() {
-		LatLng latLng = new LatLng(22.524644,113.93761);
-		mMapController.addMarker(new MarkerOptions().position(latLng).title("测试marker").snippet("xxxxxx"));
-
 	}
 
 	/**
@@ -58,37 +51,12 @@ public class BasicMapActivity extends Activity implements MapController.OnMapLoa
 		mMapController.setOnMapLoadedListener(this);
 		mMapController.moveCamera(
 				CameraUpdateFactory.newLatLngZoom(
-						new LatLng(22.524644,113.93761),
+						new LatLng(28.6880478, 115.852852), //28.6880478, 115.852852
 						18)
 		);
 		mMapController.setOnCameraChangeListener(this);
 		Timber.v("Start loading map...");
 
-		mMapController.setOnMarkerClickListener(new MapController.OnMarkerClickListener() {
-			@Override
-			public boolean onMarkerClick(Marker marker) {
-				return false;
-			}
-		});
-		mMapController.setInfoWindowAdapter(new MapController.InfoWindowAdapter() {
-			@Override
-			public View getInfoWindow(Marker marker) {
-				if(infoWindow == null) {
-					infoWindow = LayoutInflater.from(getApplicationContext()).inflate(
-							R.layout.custom_info_window, null);
-				}
-				TextView title = infoWindow.findViewById(R.id.title);
-				TextView snippet = infoWindow.findViewById(R.id.snippet);
-				title.setText(marker.getTitle());
-				snippet.setText(marker.getSnippet());
-				return infoWindow;
-			}
-
-			@Override
-			public View getInfoContents(Marker marker) {
-				return null;
-			}
-		});
 	}
 	/**
 	 * 方法重写
@@ -140,16 +108,16 @@ public class BasicMapActivity extends Activity implements MapController.OnMapLoa
 	@Override
 	public void onCameraChangeFinish(CameraPosition cameraPosition) {
 		Timber.v("OnCameraChangeFinish:%s", cameraPosition.toString());
-		if(!boundSet) {
-			LatLngBounds bounds = LatLngBounds.builder()
-					.include(new LatLng(22.382, 114.188))
-					.include(new LatLng(22.382, 114.188))
-					.include(new LatLng(22.382, 114.188))
-					.include(new LatLng(22.382, 114.188))
-					.include(new LatLng(0, 0))
-					.build();
-			mMapController.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 120));
-			boundSet = true;
-		}
+//		if(!boundSet) {
+//			LatLngBounds bounds = LatLngBounds.builder()
+//					.include(new LatLng(22.382, 114.188))
+//					.include(new LatLng(22.382, 114.188))
+//					.include(new LatLng(22.382, 114.188))
+//					.include(new LatLng(22.382, 114.188))
+//					.include(new LatLng(0, 0))
+//					.build();
+//			mMapController.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 120));
+//			boundSet = true;
+//		}
 	}
 }

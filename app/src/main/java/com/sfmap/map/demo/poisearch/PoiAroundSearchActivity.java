@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.sfmap.api.maps.CameraUpdateFactory;
 import com.sfmap.api.maps.MapController;
 import com.sfmap.api.maps.MapController.InfoWindowAdapter;
 import com.sfmap.api.maps.MapController.OnInfoWindowClickListener;
@@ -43,7 +44,7 @@ public class PoiAroundSearchActivity extends FragmentActivity implements
     private PoiResult poiResult; // poi返回的结果
     private int currentPage = 1;// 当前页面，从1开始计数
     private PoiSearch.Query query;// Poi查询条件类
-    private LatLonPoint lp = new LatLonPoint(39.911207, 116.462458);// 默认国贸116.462458,39.911207
+    private LatLonPoint lp = new LatLonPoint(28.6880478, 115.852852);// 默认国贸116.462458,39.911207
     private Marker locationMarker; // 选择的点
     private PoiSearch poiSearch;
     private PoiOverlay poiOverlay;// poi图层
@@ -56,6 +57,11 @@ public class PoiAroundSearchActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poiaroundsearch);
         init();
+        lMap.moveCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                        new LatLng(28.6880478, 115.852852), //28.6880478, 115.852852
+                        18)
+        );
     }
 
     /**
@@ -147,6 +153,7 @@ public class PoiAroundSearchActivity extends FragmentActivity implements
         currentPage = 0;
         query = new PoiSearch.Query(search, "北京市");// 第一个参数表示搜索字符串，第二个参数表示poi搜索区域（空字符串代表全国）
         query.setPageSize(10);// 设置每页最多返回多少条poiitem
+//        query.setRegion("360100");
         query.setPageNum(currentPage);// 设置查第一页
         if (lp != null) {
             query.setLocation(lp);//中心坐标点，必须传入。
@@ -182,6 +189,7 @@ public class PoiAroundSearchActivity extends FragmentActivity implements
         currentPage = 1;
         query = new PoiSearch.Query(search, "");// 第一个参数表示搜索字符串,第二个参数表示poi搜索区域（空字符串代表全国）
         query.setPageSize(10);// 设置每页返回多少条poiitem
+//        query.setRegion("360100");
         query.setPageNum(currentPage);// 设置查第一页
         poiSearch = new PoiSearch(this, query);
 

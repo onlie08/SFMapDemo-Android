@@ -14,10 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+import com.sfmap.api.maps.CameraUpdateFactory;
 import com.sfmap.api.maps.MapController;
 import com.sfmap.api.maps.MapController.InfoWindowAdapter;
 import com.sfmap.api.maps.MapController.OnMarkerClickListener;
 import com.sfmap.api.maps.SupportMapFragment;
+import com.sfmap.api.maps.model.LatLng;
 import com.sfmap.api.maps.model.Marker;
 import com.sfmap.api.maps.overlay.PoiOverlay;
 import com.sfmap.api.services.help.Inputtips;
@@ -57,6 +59,11 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poikeywordsearch);
         init();
+        lMap.moveCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                        new LatLng(28.6880478, 115.852852), //28.6880478, 115.852852
+                        18)
+        );
     }
 
     /**
@@ -149,6 +156,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
         query = new PoiSearch.Query(keyWord, "", editCity.getText().toString());
         query.setPageSize(10);// 设置每页最多返回多少条poiitem
         query.setPageNum(currentPage);// 设置查第一页
+        query.setRegion("360100");
 
         poiSearch = new PoiSearch(this, query);
         poiSearch.setOnPoiSearchListener(this);
