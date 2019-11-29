@@ -43,9 +43,9 @@ public class NaviActivity extends NaviBaseActivity implements SfMapLocationListe
     private Navi mNavi;
 
     //算路终点坐标
-    protected NaviLatLng mEndLatlng = new NaviLatLng(28.6880478, 115.852852);//115.852852,28.688047
+    protected NaviLatLng mEndLatlng = new NaviLatLng(34.748404, 113.670972);//115.852852,28.688047
     //算路起点坐标
-    protected NaviLatLng mStartLatlng = new NaviLatLng(28.669436, 115.923235);//115.923235,28.669436
+    protected NaviLatLng mStartLatlng = new NaviLatLng(34.648404, 113.570972);//115.923235,28.669436
     //算路起点坐标
     protected TruckInfo mTruckInfo;
     //存储算路起点的列表

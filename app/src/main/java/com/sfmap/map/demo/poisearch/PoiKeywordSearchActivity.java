@@ -61,7 +61,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
         init();
         lMap.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(
-                        new LatLng(28.6880478, 115.852852), //28.6880478, 115.852852
+                        new LatLng(34.748404, 113.670972), //28.6880478, 115.852852
                         18)
         );
     }
@@ -156,7 +156,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
         query = new PoiSearch.Query(keyWord, "", editCity.getText().toString());
         query.setPageSize(10);// 设置每页最多返回多少条poiitem
         query.setPageNum(currentPage);// 设置查第一页
-        query.setRegion("360100");
+        query.setRegion("410100");
 
         poiSearch = new PoiSearch(this, query);
         poiSearch.setOnPoiSearchListener(this);

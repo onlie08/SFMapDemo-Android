@@ -42,7 +42,7 @@ public class GeocoderActivity extends Activity implements
 	private String addressName;
 	private MapController lMap;
 	private MapView mapView;
-	private LatLonPoint latLonPoint = new LatLonPoint(39.90865, 116.39751);
+	private LatLonPoint latLonPoint = new LatLonPoint(34.748404, 113.670972);
 	private Marker geoMarker;
 	private Marker regeoMarker;
 
@@ -61,6 +61,11 @@ public class GeocoderActivity extends Activity implements
 		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);// 此方法必须重写
 		init();
+		lMap.moveCamera(
+				CameraUpdateFactory.newLatLngZoom(
+						new LatLng(34.748404, 113.670972), //113.670972,34.748404
+						18)
+		);
 	}
 
 	/**

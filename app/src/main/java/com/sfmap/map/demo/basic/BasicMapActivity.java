@@ -2,9 +2,11 @@ package com.sfmap.map.demo.basic;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sfmap.api.maps.CameraUpdateFactory;
 import com.sfmap.api.maps.MapController;
@@ -15,16 +17,23 @@ import com.sfmap.api.maps.model.LatLng;
 import com.sfmap.api.maps.model.LatLngBounds;
 import com.sfmap.api.maps.model.Marker;
 import com.sfmap.api.maps.model.MarkerOptions;
+import com.sfmap.api.maps.model.Poi;
 import com.sfmap.api.maps.model.TileOverlayOptions;
+import com.sfmap.api.services.core.SearchException;
+import com.sfmap.api.services.poisearch.PoiItem;
+import com.sfmap.api.services.poisearch.PoiSearch;
 import com.sfmap.map.demo.R;
 import com.sfmap.map.demo.util.ToastUtil;
+
+import java.util.List;
 
 import timber.log.Timber;
 
 /**
  * sfmapMap中介绍如何显示一个基本地图
  */
-public class BasicMapActivity extends Activity implements MapController.OnMapLoadedListener, MapController.OnCameraChangeListener {
+public class BasicMapActivity extends Activity implements MapController.OnMapLoadedListener, MapController.OnCameraChangeListener, MapController.OnPOIClickListener {
+	private String TAG = BasicMapActivity.class.getSimpleName();
 	private MapView mapView;
 	private MapController mMapController;
 	private boolean boundSet;
@@ -38,7 +47,7 @@ public class BasicMapActivity extends Activity implements MapController.OnMapLoa
 		mapView.onCreate(savedInstanceState);// 此方法必须调用
 		init();
 	}
-
+//113.667339,34.760746
 	/**
 	 * 初始化地图控制器
 	 */
@@ -49,9 +58,10 @@ public class BasicMapActivity extends Activity implements MapController.OnMapLoa
 		mMapController.getUiSettings().setScaleControlsEnabled(true);
 //		mMapController.getUiSettings().setLogoPosition(-50);
 		mMapController.setOnMapLoadedListener(this);
+        mMapController.setOnPOIClickListener(this);
 		mMapController.moveCamera(
 				CameraUpdateFactory.newLatLngZoom(
-						new LatLng(28.6880478, 115.852852), //28.6880478, 115.852852
+						new LatLng(34.748404, 113.670972), //113.670972,34.748404
 						18)
 		);
 		mMapController.setOnCameraChangeListener(this);
@@ -119,5 +129,27 @@ public class BasicMapActivity extends Activity implements MapController.OnMapLoa
 //			mMapController.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 120));
 //			boundSet = true;
 //		}
+	}
+
+    @Override
+    public void onPOIClick(final Poi poi) {
+        ToastUtil.show(getApplicationContext(),"poiid:"+poi.getPoiId());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PoiSearch poiSearch = new PoiSearch(getApplicationContext());
+                List<PoiItem> results= null;
+                try {
+                    results = poiSearch.searchPOIId(poi.getPoiId(),"410100");
+                } catch (SearchException e) {
+                    e.printStackTrace();
+                }
+                if(results == null){
+					Log.i(TAG,"results:空");
+				}else {
+					Log.i(TAG,"results:"+  results.size());
+				}
+            }
+        }).start();
 	}
 }

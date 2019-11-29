@@ -38,7 +38,7 @@ public class CameraActivity extends Activity implements OnClickListener,
 		init();
 		lMap.moveCamera(
 				CameraUpdateFactory.newLatLngZoom(
-						new LatLng(28.6880478, 115.852852), //28.6880478, 115.852852
+						new LatLng(34.748404, 113.670972), //28.6880478, 115.852852
 						18)
 		);
 	}

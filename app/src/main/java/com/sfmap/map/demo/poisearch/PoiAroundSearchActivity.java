@@ -44,7 +44,7 @@ public class PoiAroundSearchActivity extends FragmentActivity implements
     private PoiResult poiResult; // poi返回的结果
     private int currentPage = 1;// 当前页面，从1开始计数
     private PoiSearch.Query query;// Poi查询条件类
-    private LatLonPoint lp = new LatLonPoint(28.6880478, 115.852852);// 默认国贸116.462458,39.911207
+    private LatLonPoint lp = new LatLonPoint(34.748404, 113.670972);// 默认国贸116.462458,39.911207
     private Marker locationMarker; // 选择的点
     private PoiSearch poiSearch;
     private PoiOverlay poiOverlay;// poi图层
@@ -59,7 +59,7 @@ public class PoiAroundSearchActivity extends FragmentActivity implements
         init();
         lMap.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(
-                        new LatLng(28.6880478, 115.852852), //28.6880478, 115.852852
+                        new LatLng(34.748404, 113.670972), //28.6880478, 115.852852
                         18)
         );
     }
