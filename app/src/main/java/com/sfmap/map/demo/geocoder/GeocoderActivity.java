@@ -26,6 +26,7 @@ import com.sfmap.api.services.geocoder.GeocodeSearch.OnGeocodeSearchListener;
 import com.sfmap.api.services.geocoder.RegeocodeQuery;
 import com.sfmap.api.services.geocoder.RegeocodeResult;
 import com.sfmap.map.demo.R;
+import com.sfmap.map.demo.util.AppInfo;
 import com.sfmap.map.demo.util.LMapUtil;
 import com.sfmap.map.demo.util.ToastUtil;
 
@@ -42,7 +43,7 @@ public class GeocoderActivity extends Activity implements
 	private String addressName;
 	private MapController lMap;
 	private MapView mapView;
-	private LatLonPoint latLonPoint = new LatLonPoint(34.748404, 113.670972);
+	private LatLonPoint latLonPoint;
 	private Marker geoMarker;
 	private Marker regeoMarker;
 
@@ -61,11 +62,14 @@ public class GeocoderActivity extends Activity implements
 		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);// 此方法必须重写
 		init();
+		String loc = AppInfo.getMapCenterLocation(this);
+		String[] locs = loc.split(",");
 		lMap.moveCamera(
 				CameraUpdateFactory.newLatLngZoom(
-						new LatLng(34.748404, 113.670972), //113.670972,34.748404
+						new LatLng(Double.parseDouble(locs[0]),Double.parseDouble(locs[1])), //28.6880478, 115.852852
 						18)
 		);
+		latLonPoint = new LatLonPoint(Double.parseDouble(locs[0]),Double.parseDouble(locs[1]));
 	}
 
 	/**

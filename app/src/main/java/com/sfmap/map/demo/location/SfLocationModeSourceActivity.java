@@ -22,6 +22,7 @@ import com.sfmap.api.maps.model.BitmapDescriptorFactory;
 import com.sfmap.api.maps.model.LatLng;
 import com.sfmap.api.maps.model.MyLocationStyle;
 import com.sfmap.map.demo.R;
+import com.sfmap.map.demo.util.AppInfo;
 
 /**
 * sfmapMap地图中介绍定位三种模式的使用，包括定位，追随，旋转
@@ -48,9 +49,11 @@ public class SfLocationModeSourceActivity extends Activity implements
 		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);// 此方法必须重写
 		init();
+		String loc = AppInfo.getMapCenterLocation(this);
+		String[] locs = loc.split(",");
 		map.moveCamera(
 				CameraUpdateFactory.newLatLngZoom(
-						new LatLng(34.748404, 113.670972), //28.6880478, 115.852852
+						new LatLng(Double.parseDouble(locs[0]),Double.parseDouble(locs[1])), //28.6880478, 115.852852
 						18)
 		);
 	}

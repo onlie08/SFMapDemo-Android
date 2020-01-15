@@ -23,6 +23,7 @@ import com.sfmap.api.services.core.SearchException;
 import com.sfmap.api.services.poisearch.PoiItem;
 import com.sfmap.api.services.poisearch.PoiSearch;
 import com.sfmap.map.demo.R;
+import com.sfmap.map.demo.util.AppInfo;
 import com.sfmap.map.demo.util.ToastUtil;
 
 import java.util.List;
@@ -59,9 +60,11 @@ public class BasicMapActivity extends Activity implements MapController.OnMapLoa
 //		mMapController.getUiSettings().setLogoPosition(-50);
 		mMapController.setOnMapLoadedListener(this);
         mMapController.setOnPOIClickListener(this);
+		String loc = AppInfo.getMapCenterLocation(this);
+		String[] locs = loc.split(",");
 		mMapController.moveCamera(
 				CameraUpdateFactory.newLatLngZoom(
-						new LatLng(34.748404, 113.670972), //113.670972,34.748404
+						new LatLng(Double.parseDouble(locs[0]),Double.parseDouble(locs[1])), //28.6880478, 115.852852
 						18)
 		);
 		mMapController.setOnCameraChangeListener(this);

@@ -10,6 +10,7 @@ import android.widget.ToggleButton;
 
 import com.sfmap.api.maps.model.LatLng;
 import com.sfmap.map.demo.R;
+import com.sfmap.map.demo.util.AppInfo;
 import com.sfmap.map.demo.util.Constants;
 import com.sfmap.map.demo.util.ToastUtil;
 import com.sfmap.api.maps.CameraUpdate;
@@ -31,14 +32,16 @@ public class CameraActivity extends Activity implements OnClickListener,
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super .onCreate(savedInstanceState);
 		setContentView(R.layout.activity_camera);
 		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);// 此方法必须重写
 		init();
+		String loc = AppInfo.getMapCenterLocation(this);
+		String[] locs = loc.split(",");
 		lMap.moveCamera(
 				CameraUpdateFactory.newLatLngZoom(
-						new LatLng(34.748404, 113.670972), //28.6880478, 115.852852
+						new LatLng(Double.parseDouble(locs[0]),Double.parseDouble(locs[1])), //28.6880478, 115.852852
 						18)
 		);
 	}

@@ -31,6 +31,7 @@ import com.sfmap.api.services.poisearch.PoiResult;
 import com.sfmap.api.services.poisearch.PoiSearch;
 import com.sfmap.api.services.poisearch.PoiSearch.OnPoiSearchListener;
 import com.sfmap.map.demo.R;
+import com.sfmap.map.demo.util.AppInfo;
 import com.sfmap.map.demo.util.LMapUtil;
 import com.sfmap.map.demo.util.ToastUtil;
 
@@ -59,9 +60,11 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poikeywordsearch);
         init();
+        String loc = AppInfo.getMapCenterLocation(this);
+        String[] locs = loc.split(",");
         lMap.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(
-                        new LatLng(34.748404, 113.670972), //28.6880478, 115.852852
+                        new LatLng(Double.parseDouble(locs[0]),Double.parseDouble(locs[1])), //28.6880478, 115.852852
                         18)
         );
     }

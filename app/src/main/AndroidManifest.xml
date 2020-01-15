@@ -239,7 +239,7 @@
 
         <meta-data
             android:name="com.sfmap.apikey"
-            android:value="ebf48ecaa1fd436fa3d40c4600aa051f" />
+            android:value="d26058f0374b4748af80aba7a9baa6ee" />
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="cc6bcba2822b9f3b55c66e88ba30feaa" />

@@ -29,6 +29,7 @@ import com.sfmap.api.services.poisearch.PoiResult;
 import com.sfmap.api.services.poisearch.PoiSearch;
 import com.sfmap.api.services.poisearch.PoiSearch.OnPoiSearchListener;
 import com.sfmap.map.demo.R;
+import com.sfmap.map.demo.util.AppInfo;
 import com.sfmap.map.demo.util.ToastUtil;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class PoiAroundSearchActivity extends FragmentActivity implements
     private PoiResult poiResult; // poi返回的结果
     private int currentPage = 1;// 当前页面，从1开始计数
     private PoiSearch.Query query;// Poi查询条件类
-    private LatLonPoint lp = new LatLonPoint(34.748404, 113.670972);// 默认国贸116.462458,39.911207
+    private LatLonPoint lp;// 默认国贸116.462458,39.911207
     private Marker locationMarker; // 选择的点
     private PoiSearch poiSearch;
     private PoiOverlay poiOverlay;// poi图层
@@ -57,11 +58,14 @@ public class PoiAroundSearchActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poiaroundsearch);
         init();
+        String loc = AppInfo.getMapCenterLocation(this);
+        String[] locs = loc.split(",");
         lMap.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(
-                        new LatLng(34.748404, 113.670972), //28.6880478, 115.852852
+                        new LatLng(Double.parseDouble(locs[0]),Double.parseDouble(locs[1])), //28.6880478, 115.852852
                         18)
         );
+        lp = new LatLonPoint(Double.parseDouble(locs[0]),Double.parseDouble(locs[1]));
     }
 
     /**

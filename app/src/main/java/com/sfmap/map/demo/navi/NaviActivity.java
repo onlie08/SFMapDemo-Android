@@ -16,6 +16,7 @@ import com.sfmap.api.navi.NaviView;
 import com.sfmap.api.navi.NaviViewOptions;
 import com.sfmap.api.navi.model.NaviLatLng;
 import com.sfmap.map.demo.R;
+import com.sfmap.map.demo.util.AppInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,9 +44,9 @@ public class NaviActivity extends NaviBaseActivity implements SfMapLocationListe
     private Navi mNavi;
 
     //算路终点坐标
-    protected NaviLatLng mEndLatlng = new NaviLatLng(34.748404, 113.670972);//115.852852,28.688047
+    protected NaviLatLng mEndLatlng;//115.852852,28.688047
     //算路起点坐标
-    protected NaviLatLng mStartLatlng = new NaviLatLng(34.648404, 113.570972);//115.923235,28.669436
+    protected NaviLatLng mStartLatlng;//115.923235,28.669436
     //算路起点坐标
     protected TruckInfo mTruckInfo;
     //存储算路起点的列表
@@ -64,7 +65,10 @@ public class NaviActivity extends NaviBaseActivity implements SfMapLocationListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navi_demo);
         initView(savedInstanceState);
-
+        String loc = AppInfo.getMapCenterLocation(this);
+        String[] locs = loc.split(",");
+        mEndLatlng = new NaviLatLng(Double.parseDouble(locs[0]), Double.parseDouble(locs[1]));
+        mStartLatlng = new NaviLatLng(Double.parseDouble(locs[0])+0.02, Double.parseDouble(locs[1])+0.02);
         String startLatlng = getIntent().getStringExtra("startLatlng");
         String endLatlng = getIntent().getStringExtra("endLatlng");
         String truckInfo = getIntent().getStringExtra("truckInfo");
