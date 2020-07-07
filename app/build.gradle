@@ -17,7 +17,7 @@ android {
         }
         applicationId "com.sfmap.map.demo"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 24
     }
     buildTypes {
         release {
@@ -44,6 +44,10 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -63,6 +67,5 @@ dependencies {
         exclude group: 'com.android.support'
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-//    implementation project(':navisdk')
 }
 

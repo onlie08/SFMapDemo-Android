@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Process;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ import com.sfmap.map.demo.overlay.PolylineActivity;
 import com.sfmap.map.demo.overlay.TileProviderActivity;
 import com.sfmap.map.demo.poisearch.PoiAroundSearchActivity;
 import com.sfmap.map.demo.poisearch.PoiKeywordSearchActivity;
+import com.sfmap.map.demo.util.LogcatFileManager;
 import com.sfmap.map.demo.view.FeatureView;
 
 
@@ -99,38 +101,38 @@ public final class MainActivity extends ListActivity {
 //					BaseMapFragmentActivity.class),
 			new DemoDetails(R.string.list_item_title_camera_demo, R.string.list_item_description_camera,
 					CameraActivity.class),
-//			new DemoDetails(R.string.list_item_title_events, R.string.list_item_description_events,
-//					EventsActivity.class),
-//			new DemoDetails(R.string.list_item_title_poiclick,
-//					R.string.list_item_description_poiclick, PoiClickActivity.class),
-//			new DemoDetails(R.string.list_item_title_mapOption,
-//					R.string.list_item_description_mapOption, MapOptionActivity.class),
-//			new DemoDetails(R.string.list_item_title_screenshot,
-//					R.string.list_item_description_screenshot, ScreenShotActivity.class),
-//			new DemoDetails(R.string.list_item_title_opengl, R.string.list_item_description_opengl,
-//					OpenglActivity.class),
-//			new DemoDetails(R.string.list_item_title_uisettings,
-//					R.string.list_item_description_uisettings, UiSettingsActivity.class),
-//			new DemoDetails(R.string.list_item_title_geojson_demo,
-//					R.string.list_item_description_geojson, GeojsonSearchActivity.class),
-//            new DemoDetails(R.string.list_item_title_cluster_demo,
-//                    R.string.list_item_description_cluster, ClusterActivity.class),
-//			new DemoDetails(R.string.list_item_title_polyline,
-//					R.string.list_item_description_polyline, PolylineActivity.class),
-//			new DemoDetails(R.string.list_item_title_polygon,
-//					R.string.list_item_description_polygon, PolygonActivity.class),
-//			new DemoDetails(R.string.list_item_title_circle, R.string.list_item_description_circle,
-//					CircleActivity.class),
-//			new DemoDetails(R.string.list_item_title_marker, R.string.list_item_description_marker,
-//					MarkerActivity.class),
-//			new DemoDetails(R.string.list_item_title_arc, R.string.list_item_description_arc,
-//					ArcActivity.class),
-//			new DemoDetails(R.string.list_item_title_groundoverlay,
-//					R.string.list_item_description_groundoverlay,
-//					GroundOverlayActivity.class),
-//			new DemoDetails(R.string.list_item_title_navigatearrow,
-//					R.string.list_item_description_navigatearrow,
-//					NavigateArrowOverlayActivity.class),
+			new DemoDetails(R.string.list_item_title_events, R.string.list_item_description_events,
+					EventsActivity.class),
+			new DemoDetails(R.string.list_item_title_poiclick,
+					R.string.list_item_description_poiclick, PoiClickActivity.class),
+			new DemoDetails(R.string.list_item_title_mapOption,
+					R.string.list_item_description_mapOption, MapOptionActivity.class),
+			new DemoDetails(R.string.list_item_title_screenshot,
+					R.string.list_item_description_screenshot, ScreenShotActivity.class),
+			new DemoDetails(R.string.list_item_title_opengl, R.string.list_item_description_opengl,
+					OpenglActivity.class),
+			new DemoDetails(R.string.list_item_title_uisettings,
+					R.string.list_item_description_uisettings, UiSettingsActivity.class),
+			new DemoDetails(R.string.list_item_title_geojson_demo,
+					R.string.list_item_description_geojson, GeojsonSearchActivity.class),
+            new DemoDetails(R.string.list_item_title_cluster_demo,
+                    R.string.list_item_description_cluster, ClusterActivity.class),
+			new DemoDetails(R.string.list_item_title_polyline,
+					R.string.list_item_description_polyline, PolylineActivity.class),
+			new DemoDetails(R.string.list_item_title_polygon,
+					R.string.list_item_description_polygon, PolygonActivity.class),
+			new DemoDetails(R.string.list_item_title_circle, R.string.list_item_description_circle,
+					CircleActivity.class),
+			new DemoDetails(R.string.list_item_title_marker, R.string.list_item_description_marker,
+					MarkerActivity.class),
+			new DemoDetails(R.string.list_item_title_arc, R.string.list_item_description_arc,
+					ArcActivity.class),
+			new DemoDetails(R.string.list_item_title_groundoverlay,
+					R.string.list_item_description_groundoverlay,
+					GroundOverlayActivity.class),
+			new DemoDetails(R.string.list_item_title_navigatearrow,
+					R.string.list_item_description_navigatearrow,
+					NavigateArrowOverlayActivity.class),
 			new DemoDetails(R.string.list_item_title_geocoder,
 					R.string.list_item_description_geocoder, GeocoderActivity.class),
 //			new DemoDetails(R.string.list_item_title_location_mode_source,
@@ -142,26 +144,26 @@ public final class MainActivity extends ListActivity {
 			new DemoDetails(R.string.list_item_title_poikeywordsearch,
 					R.string.list_item_description_poikeywordsearch,
 					PoiKeywordSearchActivity.class),
-//			new DemoDetails(R.string.list_item_title_poiaroundsearch,
-//					R.string.list_item_description_poiaroundsearch,
-//					PoiAroundSearchActivity.class),
-//			new DemoDetails(R.string.overlay_draw_line_demo_title,
-//					R.string.overlay_draw_line_demo_description,
-//					DrawLineActivity.class),
+			new DemoDetails(R.string.list_item_title_poiaroundsearch,
+					R.string.list_item_description_poiaroundsearch,
+					PoiAroundSearchActivity.class),
+			new DemoDetails(R.string.overlay_draw_line_demo_title,
+					R.string.overlay_draw_line_demo_description,
+					DrawLineActivity.class),
 			new DemoDetails(R.string.basic_navi_demo_title,
 					R.string.basic_navi_demo_description,
 					NaviActivity.class),
-//			new DemoDetails(R.string.draw_circle_to_group_points_title,
-//					R.string.draw_circle_to_group_points_description,
-//					CirclePointsActivity.class),
-//			new DemoDetails(R.string.tile_provider_demo_title,
-//					R.string.tile_provider_demo_description,
-//					TileProviderActivity.class),
-//
-//			new DemoDetails(R.string.builtin_map_data,
-//					R.string.builtin_map_data_description,
-//					BuiltinOfflineMapActivity.class),
-//
+			new DemoDetails(R.string.draw_circle_to_group_points_title,
+					R.string.draw_circle_to_group_points_description,
+					CirclePointsActivity.class),
+			new DemoDetails(R.string.tile_provider_demo_title,
+					R.string.tile_provider_demo_description,
+					TileProviderActivity.class),
+
+			new DemoDetails(R.string.builtin_map_data,
+					R.string.builtin_map_data_description,
+					BuiltinOfflineMapActivity.class),
+
 //			new DemoDetails(R.string.list_item_title_localpoisearch_name,
 //			         R.string.list_item_description_localpoisearch_name,
 //					LocalPoiSearchActivity.class),
@@ -201,6 +203,11 @@ public final class MainActivity extends ListActivity {
 		ListAdapter adapter = new CustomArrayAdapter(
 				this.getApplicationContext(), demos);
 		setListAdapter(adapter);
+		try {
+			LogcatFileManager.getInstance().start(Environment
+					.getExternalStorageDirectory().getAbsolutePath() + "/01SfMapSdkDemo");
+		}catch (Exception e){
+		}
 	}
 
 	@Override
