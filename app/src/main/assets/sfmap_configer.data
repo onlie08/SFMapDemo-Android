@@ -5,6 +5,4 @@ sf_map_url=https://gis.sf-express.com/mms/ds
 net_location_url=https://gis.sf-express.com/nloc/locationapi
 ##Gps定位服务地址
 gps_location_url=https://gis.sf-express.com/nloc/gpsapi
-##地图初始位置
-map_center=30.220074,115.077048
 ################url配置##########################

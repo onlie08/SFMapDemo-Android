@@ -158,7 +158,9 @@ public class PoiAroundSearchActivity extends FragmentActivity implements
         query = new PoiSearch.Query(search, "北京市");// 第一个参数表示搜索字符串，第二个参数表示poi搜索区域（空字符串代表全国）
         query.setPageSize(10);// 设置每页最多返回多少条poiitem
 //        query.setRegion("360100");
-        query.setPageNum(currentPage);// 设置查第一页
+        query.setPageNum(1);// 设置查第一页
+        query.setScope(2);
+//        query.setCategory();
         if (lp != null) {
             query.setLocation(lp);//中心坐标点，必须传入。
             poiSearch = new PoiSearch(this, query);

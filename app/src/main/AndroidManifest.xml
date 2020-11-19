@@ -13,8 +13,9 @@
         android:label="@string/demo_title"
         android:largeHeap="true"
         android:supportsRtl="true"
+        android:vmSafeMode="true"
         android:usesCleartextTraffic="true"
-        android:vmSafeMode="true">
+        >
 
         <uses-library android:name="org.apache.http.legacy" android:required="true"/>
 
@@ -240,6 +241,8 @@
         <meta-data
             android:name="com.sfmap.apikey"
             android:value="e6713376ef2e4595982639578c55984a" />
+            <!--android:value="ebf48ecaa1fd436fa3d40c4600aa051f" /> &lt;!&ndash;公安内网测试临时改动&ndash;&gt;-->
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="cc6bcba2822b9f3b55c66e88ba30feaa" />

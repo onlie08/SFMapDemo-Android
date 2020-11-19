@@ -216,10 +216,10 @@ public class NaviActivity extends NaviBaseActivity implements SfMapLocationListe
      */
     @Override
     public void onNaviCancel() {
-        mNavi.stopNavi();
-        mNavi.destroy();
-        mNaviView.onDestroy();
-        sfSpeechSyntesizer.destroy();
+//        mNavi.stopNavi();
+//        mNavi.destroy();
+//        mNaviView.onDestroy();
+//        sfSpeechSyntesizer.destroy();
         finish();
     }
     /**

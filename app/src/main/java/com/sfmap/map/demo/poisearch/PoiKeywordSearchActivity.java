@@ -22,6 +22,7 @@ import com.sfmap.api.maps.SupportMapFragment;
 import com.sfmap.api.maps.model.LatLng;
 import com.sfmap.api.maps.model.Marker;
 import com.sfmap.api.maps.overlay.PoiOverlay;
+import com.sfmap.api.services.core.LatLonPoint;
 import com.sfmap.api.services.help.Inputtips;
 import com.sfmap.api.services.help.Inputtips.InputtipsListener;
 import com.sfmap.api.services.help.InputtipsQuery;
@@ -67,6 +68,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
                         new LatLng(Double.parseDouble(locs[0]),Double.parseDouble(locs[1])), //28.6880478, 115.852852
                         18)
         );
+        lMap.setTrafficEnabled(true);
     }
 
     /**
@@ -159,7 +161,10 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
         query = new PoiSearch.Query(keyWord, "", editCity.getText().toString());
         query.setPageSize(10);// 设置每页最多返回多少条poiitem
         query.setPageNum(currentPage);// 设置查第一页
-        query.setRegion("410100");
+        query.setRegion("420100");
+        query.setScope(2);
+        query.setRadius(-1);
+        query.setLocation(new LatLonPoint(30.454036578947363,114.42596599999997));
 
         poiSearch = new PoiSearch(this, query);
         poiSearch.setOnPoiSearchListener(this);
